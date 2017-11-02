@@ -46,7 +46,7 @@ webPreferences: {
 	webSecurity: false,//Boolean - When setting `false`, it will disable the same-origin policy (Usually using testing websites by people), and set `allowDisplayingInsecureContent` and `allowRunningInsecureContent` to `true` if these two options are not set by user. Default is `true`.
 	allowDisplayingInsecureContent: true,//Boolean - Allow an https page to display content like images from http URLs. Default is `false`.
 	allowRunningInsecureContent: true,//Boolean - Allow a https page to run JavaScript, CSS or plugins from http URLs. Default is `false`.
-	images: true,//Boolean - Enables image support. Default is `true`.
+	images: false,//Boolean - Enables image support. Default is `true`.
 	java: false,//Boolean - Enables Java support. Default is `false`.
 	textAreasAreResizable: true,//Boolean - Make TextArea elements resizable. Default is `true`.
 	webgl: true,//Boolean - Enables WebGL support. Default is `true`.

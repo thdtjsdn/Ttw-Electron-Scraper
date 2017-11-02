@@ -85,10 +85,13 @@ global.initialized = function()
 
 	//View 구성을 완료 후 DOM과 JS를 조작후 <Head>와 <Body>를 저장한다.;
 	global.exec_tjs_web__saveProcess__DOMAndJS();
+
+	//View 구성을 완료 후 DOM과 JS를 조작후 <Head>와 <Body>를 저장한다.;
+	global.exec_tjs_web__saveProcess__DOMAndJS__Compress();
 	//*/
 
 	//View 구성을 완료 후 DOM과 JS를 조작후 <Head>와 <Body>를 저장한다.;
-	global.exec_tjs_web__saveProcess__DOMAndJS();
+	global.exec_tjs_web__saveProcess__DOMAndJS__Compress();
 
 	console.log( "--[ E ] - global.initialized():void----------" );
 };
@@ -155,6 +158,33 @@ global.exec_tjs_web__saveProcess__DOMAndJS = function()
 	console.log( "--[ E ] - global.exec_tjs_web__saveProcess__DOMAndJS():void----------" );
 };
 global.exec_tjs_web__saveProcess__DOMAndJS._tjs = global.REQUIRES.fs.readFileSync( "./tjs-exec-web/saveProcess__DOMAndJS.tjs" ).toString( "utf8" );
+
+//--------------------------------------------------;
+
+/**
+ * View 구성을 완료 후 DOM과 JS를 조작후 <Head>와 <Body>를 저장한다.
+ * @function
+ */
+global.exec_tjs_web__saveProcess__DOMAndJS__Compress = function()
+{
+	console.log( "--[ S ] - global.exec_tjs_web__saveProcess__DOMAndJS__Compress():void----------" );
+
+	var to = global.DATA_URL.data[ global.DATA_URL.idx ];//target Object;
+		console.log( "target NAME : " + to.nm );
+		console.log( "target URL : " + to.url );
+
+	var js = global.exec_tjs_web__saveProcess__DOMAndJS__Compress._tjs.replace( "<!=data=!>", JSON.stringify( { nm : to.nm, url : global.getConvertURL( to.url ) } ) );
+		//console.log( js );
+
+	//#PROMIS;
+	var rPromis = global.win.webContents.executeJavaScript( js );
+		rPromis.then(function( result ){ if( result ) global.go(); }
+			, function( result ){ console.log( "[ ERROR ] - exec_tjs_web__saveProcess__DOMAndJS__Compress.tjs Error" ); }
+		);
+
+	console.log( "--[ E ] - global.exec_tjs_web__saveProcess__DOMAndJS__Compress():void----------" );
+};
+global.exec_tjs_web__saveProcess__DOMAndJS__Compress._tjs = global.REQUIRES.fs.readFileSync( "./tjs-exec-web/saveProcess__DOMAndJS__Compress.tjs" ).toString( "utf8" );
 
 //--------------------------------------------------;
 
